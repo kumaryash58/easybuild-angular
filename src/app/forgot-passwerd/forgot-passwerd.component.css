@@ -1,0 +1,23 @@
+.success-post{
+    background-color:rgb(195, 238, 195);
+    color: green;
+  }
+
+.row{
+  color: black;
+}
+
+.btn-outline-primary{
+  background-color:white;
+  border-color: #7b1fa2;
+  color: black;
+  font-weight: bold;
+}
+.btn-outline-primary:hover{
+  background-color: #7b1fa2;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+.required {
+  color: red;
+}

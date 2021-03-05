@@ -1,0 +1,13 @@
+.head-nav  {
+    background-color: rgb(12, 12, 129);
+}
+
+.profile-icon{
+    padding-top: 50px;
+    padding-left: 30%;
+  text-align: center;
+}
+
+.profile-icon h3{
+    align-items: center;
+}
