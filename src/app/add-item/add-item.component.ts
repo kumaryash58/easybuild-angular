@@ -27,7 +27,7 @@ export class AddItemComponent implements OnInit {
   form=new FormGroup({
     title:new FormControl(),
     description:new FormControl(),
-    bodyPost:new FormControl(),
+    postBody:new FormControl(),
     image:new FormControl()
   });
   isSave = false;
@@ -36,7 +36,7 @@ export class AddItemComponent implements OnInit {
     this.post=new Post();
     this.post.title=this.title.value;
     this.post.description=this.description.value;
-    this.post.bodyPost=this.bodyPost.value;
+    this.post.postBody=this.postBody.value;
     this.post.image=this.image.value;
     this.submitted=true;
     
@@ -51,7 +51,7 @@ export class AddItemComponent implements OnInit {
   //   this.post=new Post();
   //   this.post.title=this.title.value;
   //   this.post.description=this.description.value;
-  //   this.post.bodyPost=this.bodyPost.value;
+  //   this.post.postBody=this.postBody.value;
   //   this.post.image=this.image.value;
   //   this.submitted=true;
   //   if(this.isSave){
@@ -65,6 +65,7 @@ export class AddItemComponent implements OnInit {
     uploadImageData.append('imageFile', this.mimeType, this.mimeType.name);
     uploadImageData.append('description', this.description.value);
     uploadImageData.append('title', this.title.value);
+    uploadImageData.append('postBody', this.postBody.value);
    uploadImageData.append('email', localStorage.getItem('email'));
     console.log(this.mimeType);
     this.postService.createPost(uploadImageData)
@@ -88,8 +89,8 @@ export class AddItemComponent implements OnInit {
     return this.form.get('description');
   }
 
-  get bodyPost(){
-    return this.form.get('bodyPost');
+  get postBody(){
+    return this.form.get('postBody');
   }
 
   get image(){

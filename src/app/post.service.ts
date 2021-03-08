@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PostService {
   private baseUrl = environment.baseUrl;
-
+  email: any;
   constructor(private http:HttpClient) { }
 
   createPost(post: object): Observable<object> {
@@ -16,6 +16,7 @@ export class PostService {
   }
   
   getAllPost(){
-    return this.http.get(`${this.baseUrl}` + 'post/getAllPosts')
+    this.email = localStorage.getItem("email");
+    return this.http.get(`${this.baseUrl}post/getAllPosts/${this.email}`);
   }
 }

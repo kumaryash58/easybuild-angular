@@ -37,7 +37,9 @@ export class AuthenticationService {
                 let tokenStr =  obj.token;//this.partner.token;
                 localStorage.setItem('token', tokenStr);
                 localStorage.setItem('gender', obj.gender);
-                localStorage.setItem('username', obj.username);
+                localStorage.setItem('firstName', obj.firstName);
+                localStorage.setItem('lastName', obj.lastName);
+                localStorage.setItem('profileImgPath', obj.profileImgPath);
                // this.currentUserSubject.next(user);
                 }
                 return partner;

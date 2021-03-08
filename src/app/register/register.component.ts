@@ -25,8 +25,8 @@ export class RegisterComponent implements OnInit {
   loading = false;
 
   form=new FormGroup({
-    firstname:new FormControl(),
-    lastname:new FormControl(),
+    firstName:new FormControl(),
+    lastName:new FormControl(),
     email:new FormControl(),
     password:new FormControl(),
     gender: new FormControl(),
@@ -39,8 +39,8 @@ export class RegisterComponent implements OnInit {
     // console.log(this.adminDetailEmail.value);
 
     this.adminDetail=new AdminDetail();
-    this.adminDetail.firstname=this.firstname.value;
-    this.adminDetail.lastname=this.lastname.value;
+    this.adminDetail.firstName=this.firstName.value;
+    this.adminDetail.lastName=this.lastName.value;
     this.adminDetail.email=this.email.value;
     this.adminDetail.password=this.password.value;
     this.adminDetail.gender=this.gender.value;
@@ -62,12 +62,12 @@ export class RegisterComponent implements OnInit {
     this.adminDetail = new AdminDetail();
   }
 
-  get firstname(){
-    return this.form.get('firstname');
+  get firstName(){
+    return this.form.get('firstName');
   }
 
-  get lastname(){
-    return this.form.get('lastname');
+  get lastName(){
+    return this.form.get('lastName');
   }
 
   get email(){

@@ -12,12 +12,22 @@ export class AppComponent {
   title = 'FormSubmit';
   currentUser: AdminDetail;
  gender = localStorage.getItem('gender');
-  userName = localStorage.getItem('username');
+ firstName = localStorage.getItem('firstName');
+ lastName = localStorage.getItem('lastName');
+ profileImgPath = localStorage.getItem('profileImgPath');
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
+  url
+  ngOnInit() {
+    if(this.profileImgPath != null){
+      this.url = this.profileImgPath;
+    } else if (this.profileImgPath == null || this.profileImgPath == "undefined" || this.gender == 'Female') {
+      this.url = "./assets/female-crop.png";
+    } 
   }
   logout() {
     this.authenticationService.logout();

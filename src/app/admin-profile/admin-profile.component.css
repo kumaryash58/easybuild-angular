@@ -98,7 +98,8 @@ h6 {
 }
 
 .f-w-600 {
-    font-weight: 600
+    font-weight: 600;
+    color: white;
 }
 
 .m-b-20 {
@@ -130,4 +131,29 @@ h6 {
     margin: 0 10px 0 0;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out
+}
+input{
+    margin-left: 10px;
+    border-top: transparent;
+    border-right: transparent;
+    width: 30%;
+    opacity: 1;
+    background-color: transparent;
+    font-size: 20px;
+    margin-top: 10px;
+}
+.text-white{
+    color: white;
+}
+
+.card-block{
+    color: black;
+}
+i{
+    width: 10px;
+}
+.fa-edit{
+    cursor: pointer;
+    margin-left: 100%;
+   font-size: 30px;
 }

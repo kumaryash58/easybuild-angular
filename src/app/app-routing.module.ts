@@ -6,11 +6,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { ForgotPasswerdComponent } from './forgot-passwerd/forgot-passwerd.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const x = localStorage.getItem('currentUser');
 let route = 'register';
 if(x != null) {
-  route = 'add-item';
+  route = 'dashboard';
 }
 const routes: Routes = [
  
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'add-item', component: AddItemComponent },
   { path: 'forgot-passwerd', component: ForgotPasswerdComponent },
   { path: 'admin-profile', component: AdminProfileComponent },
+  { path: 'edit-profile', component: EditProfileComponent }
 ];
 
 @NgModule({

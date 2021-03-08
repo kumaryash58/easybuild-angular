@@ -12,15 +12,21 @@ import { AdminDetailService } from '../admin-detail.service';
 export class AdminProfileComponent implements OnInit {
 
 gender = localStorage.getItem('gender');
-  userName = localStorage.getItem('username');
+profileImgPath = localStorage.getItem('profileImgPath');
   retriviedAdmin: any;
   genderName: any;
   constructor(
     private adminDetailService:AdminDetailService,
     private router: Router
   ) {}
-
+  url;
   ngOnInit() {
+    if(this.profileImgPath != null){
+      this.url = this.profileImgPath;
+    } else if (this.gender = 'Female') {
+      this.url = "./assets/female-crop.png";
+    } 
+    this.getProfileDetails();
   }
 
   adminDetail : AdminDetail=new AdminDetail();
@@ -29,8 +35,8 @@ gender = localStorage.getItem('gender');
   
 
   form=new FormGroup({
-    firstname:new FormControl(),
-    lastname:new FormControl(),
+    firstName:new FormControl(),
+    lastName:new FormControl(),
     email:new FormControl(),
     city: new FormControl(),
     country: new FormControl()
@@ -38,8 +44,8 @@ gender = localStorage.getItem('gender');
   register(registerform){
 
     this.adminDetail=new AdminDetail();
-    this.adminDetail.firstname=this.firstname.value;
-    this.adminDetail.lastname=this.lastname.value;
+    this.adminDetail.firstName=this.firstName.value;
+    this.adminDetail.lastName=this.lastName.value;
     this.adminDetail.email=this.email.value;
     this.adminDetail.city=this.city.value;
     this.adminDetail.country=this.country.value;
@@ -69,12 +75,12 @@ gender = localStorage.getItem('gender');
        );
    }
 
-   get firstname(){
-    return this.form.get('firstname');
+   get firstName(){
+    return this.form.get('firstName');
   }
 
-  get lastname(){
-    return this.form.get('lastname');
+  get lastName(){
+    return this.form.get('lastName');
   }
 
   get email(){

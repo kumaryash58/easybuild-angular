@@ -2,7 +2,7 @@ export class Post {
     id:number;
     title:String;
     description:String;
-    bodyPost:String;
+    postBody:String;
     image:any;
     token:String;
 }

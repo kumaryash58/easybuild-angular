@@ -37,10 +37,10 @@
         <div >
           <a mat-button  *ngIf="currentUser==null" [routerLink]="'/login'"> Login </a>
           <a mat-button  *ngIf="currentUser==null" [routerLink]="'/register'"> Create Account </a>
-          <a mat-button [routerLink]="'/contacts'"> Contacts </a>
-          <a mat-button [routerLink]="'/about'"> About Us </a>
-          <a mat-button [routerLink]="'/activities'"> Activities </a>
-          <a mat-button [routerLink]="'/create-activity'"> Create Activity </a>
+          <!-- <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+          <a mat-button [routerLink]="'/about'"> About Us </a> -->
+          <!-- <a mat-button [routerLink]="'/activities'"> Activities </a>
+          <a mat-button [routerLink]="'/create-activity'"> Create Activity </a> -->
           <!-- <a mat-button [routerLink]="'/create-activity'">
             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="100">
             <h4>John Doe</h4> 
@@ -48,9 +48,15 @@
           
         </div>
         <div class="profile-icon" *ngIf="currentUser!=null">
-        <img  *ngIf="gender==='Male'; else genderName" src="./assets/male-crop.png" alt="Admin" class="rounded-circle" width="60" [routerLink]="'/admin-profile'">
-        <img  genderName src="./assets/female-crop.png" alt="Admin" class="rounded-circle" width="60" [routerLink]="'/admin-profile'">
-        <h3>{{userName}}</h3> 
+        <!-- <img  *ngIf="gender==='Male'; else genderName" src="./assets/male-crop.png" alt="Admin" class="rounded-circle" width="60" [routerLink]="'/admin-profile'">
+       <ng-template #genderName>
+        <img src="./assets/female-crop.png" alt="Admin" class="rounded-circle" width="60" [routerLink]="'/admin-profile'">
+      </ng-template> -->
+      <img  *ngIf="url !=null && url != 'undefined'" [src]="url" alt="Admin" class="rounded-circle" width="60" [routerLink]="'/admin-profile'">
+         
+      <img *ngIf="url==null || url == 'undefined'" src="./assets/male-crop.png"  alt="Admin" class="rounded-circle" width="60" [routerLink]="'/admin-profile'">
+   
+        <h3>{{firstName}} {{lastName}}</h3> 
       </div>
       </mat-toolbar-row>
       <!-- <div class="row gutters-sm">

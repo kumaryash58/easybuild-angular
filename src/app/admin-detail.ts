@@ -1,12 +1,15 @@
 export class AdminDetail {
     id:number;
-    firstname:String;
-    lastname:String;
+    firstName:String;
+    lastName:String;
     email:String;
     password:String;
+    address:String;
+    mobileNo:String;
     gender:String;
     city:String;
     country:String;
+    image:String;
     profileImgPath:String;
     token:String;
 }

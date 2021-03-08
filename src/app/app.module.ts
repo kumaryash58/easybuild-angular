@@ -15,6 +15,7 @@ import { AuthInterceptor } from './auth.interceptor';
 import { ForgotPasswerdComponent } from './forgot-passwerd/forgot-passwerd.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     AddItemComponent,
     ForgotPasswerdComponent,
     AdminProfileComponent,
+    EditProfileComponent,
   ],
   imports: [
     BrowserModule,

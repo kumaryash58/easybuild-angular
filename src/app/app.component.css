@@ -1,13 +1,26 @@
 .head-nav  {
     background-color: rgb(12, 12, 129);
+    width: 100%;
 }
 
 .profile-icon{
     padding-top: 50px;
-    padding-left: 30%;
+    padding-left: 75%;
   text-align: center;
 }
 
 .profile-icon h3{
     align-items: center;
 }
+
+@media only screen and (max-width: 600px) {
+    .profile-icon{
+        padding-top: 50px;
+        padding-left: 50%;
+      text-align: center;
+      width: 5%;
+    }
+    h3{
+        font-size: 50%;
+    }
+  }
