@@ -7,6 +7,8 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { ForgotPasswerdComponent } from './forgot-passwerd/forgot-passwerd.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UpdateItemComponent } from './update-item/update-item.component';
+import { TemplateListingComponent } from './template-listing/template-listing.component';
 
 const x = localStorage.getItem('currentUser');
 let route = 'register';
@@ -22,7 +24,9 @@ const routes: Routes = [
   { path: 'add-item', component: AddItemComponent },
   { path: 'forgot-passwerd', component: ForgotPasswerdComponent },
   { path: 'admin-profile', component: AdminProfileComponent },
-  { path: 'edit-profile', component: EditProfileComponent }
+  { path: 'edit-profile', component: EditProfileComponent },
+  { path: 'update-item', component: UpdateItemComponent },
+  { path: 'template-listing', component: TemplateListingComponent }
 ];
 
 @NgModule({

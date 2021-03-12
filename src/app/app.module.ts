@@ -10,12 +10,16 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatDialogModule, MatDialogRef, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthInterceptor } from './auth.interceptor';
 import { ForgotPasswerdComponent } from './forgot-passwerd/forgot-passwerd.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { UpdateItemComponent } from './update-item/update-item.component';
+import { TemplateListingComponent } from './template-listing/template-listing.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ForgotPasswerdComponent,
     AdminProfileComponent,
     EditProfileComponent,
+    UpdateItemComponent,
+    TemplateListingComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     MatListModule,
     MatButtonModule,
     MatIconModule,
-    EditorModule
+    EditorModule,
+    MatDialogModule,
+    NgbModule
   ],
   providers: [
     {
@@ -50,8 +58,11 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
       multi   : true,
      
     },
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }  
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [TemplateListingComponent]
 })
 export class AppModule { }

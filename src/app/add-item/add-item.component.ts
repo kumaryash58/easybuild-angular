@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 import { Post } from '../post';
 import { PostService } from '../post.service';
 
@@ -44,37 +45,34 @@ export class AddItemComponent implements OnInit {
     }
 
 }
-  // register(registerform){
-  //   // console.log(this.partnerName.value);
-  //   // console.log(this.partnerEmail.value);
-
-  //   this.post=new Post();
-  //   this.post.title=this.title.value;
-  //   this.post.description=this.description.value;
-  //   this.post.postBody=this.postBody.value;
-  //   this.post.image=this.image.value;
-  //   this.submitted=true;
-  //   if(this.isSave){
-  //     this.savePost();
-  //   }
-  // }
 
   savePost() {
     //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
-    const uploadImageData = new FormData();
+    const uploadImageData = new FormData(); 
+    //Update Post Details
+    this.postService.createPost(this.post)
+    .pipe(first())
+    .subscribe((post) => {
+      if (post) {
+        // const obj = JSON.parse(post.result);
+        // localStorage.setItem('profileImgPath', obj.result.message);
+        const postStr = JSON.stringify(post);
+        const obj = JSON.parse(postStr);
+        const id =  obj.body.result.message
     uploadImageData.append('imageFile', this.mimeType, this.mimeType.name);
-    uploadImageData.append('description', this.description.value);
-    uploadImageData.append('title', this.title.value);
-    uploadImageData.append('postBody', this.postBody.value);
-   uploadImageData.append('email', localStorage.getItem('email'));
     console.log(this.mimeType);
-    this.postService.createPost(uploadImageData)
+     //Upload Image
+    this.postService.updatePostImg(uploadImageData, id)
     .subscribe((response) => {
       if (response) {
-        this.message = 'Post uploaded successfully';
+        this.message = 'Post Added Successfully';
         this.router.navigate(['/add-item'])
       } else {
-        this.message = 'Post not uploaded successfully';
+        this.message = 'Post Not Added Successfully';
+      }
+    });
+      } else {
+        this.message = 'Post Not Uploaded Successfully';
       }
     }
     );

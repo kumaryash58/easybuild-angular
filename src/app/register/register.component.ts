@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl,FormGroup,Validators} from '@angular/forms';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
 import { AdminDetail } from '../admin-detail';
 import { AdminDetailService } from '../admin-detail.service';
+import { TemplateListingComponent } from '../template-listing/template-listing.component';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private adminDetailService:AdminDetailService,
-    private router: Router
+    private router: Router,
+    public matDialog: MatDialog
     ) { }
 
   ngOnInit() {
@@ -88,6 +91,17 @@ export class RegisterComponent implements OnInit {
 
   get country(){
     return this.form.get('country');
+  }
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "template-listing";
+    dialogConfig.height = "350px";
+    dialogConfig.width = "600px";
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(TemplateListingComponent, dialogConfig);
   }
 
 }

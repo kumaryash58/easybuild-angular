@@ -1,0 +1,76 @@
+<!-- https://medium.com/@rameez.s.shaikh/upload-and-retrieve-images-using-spring-boot-angular-8-mysql-18c166f7bc98 -->
+
+
+<form [formGroup]="form" #registerform (ngSubmit)="onSubmit(registerform)">
+  <div *ngIf="message; else templateName">
+    <div class="row">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-12 success-post">
+        <h3>
+          {{message}}
+        </h3>
+      </div>
+      <div class="col-sm-2"></div>
+      <br>
+      <div class="col-sm-12">
+        <h3>
+          <a routerLink="/" class="nav-link" class="btn btn-primary active bg-dark" role="button">Add More Post</a>
+        </h3>
+      </div>
+    </div>
+  </div>
+  <ng-template #templateName>
+    <div class="row">
+      <div class="col-sm-7"></div>
+      <div class="col-sm-5">
+        <div class="form-group">
+          <!-- <button class="btn btn-primary"></button> -->
+          <button type="submit" class="btn btn-primary" (click)="onSubmit('Save')">Save</button>
+          <button type="button" class="btn btn-primary" (click)="onSubmit('Publish')">Publish</button>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-1"></div>
+      <div class="form-group col-md-10">
+        <input type="text" class="form-control title" formControlName="title" [ngModel]="retriviedPost?.title"  placeholder="Enter Title">
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-sm-0"></div>
+
+      <div class="form-group col-md-6">
+        <editor apiKey="o5zwzn40dqu70g9w43sbt01peg710wikp5fglvtyqf2dd97z" [init]="{
+    height: 500,
+    menubar: false,
+    plugins: [
+      'advlist autolink lists link image charmap print preview anchor',
+      'searchreplace visualblocks code fullscreen',
+      'insertdatetime media table paste code help wordcount'
+    ],
+    toolbar:
+      'undo redo | formatselect | bold italic backcolor | \
+      alignleft aligncenter alignright alignjustify | \
+      bullist numlist outdent indent | removeformat | forecolor | help | image'
+  }" class="form-control" formControlName="postBody" [ngModel]="retriviedPost?.postBody"></editor>
+      </div>
+      <div class="form-group col-md-4">
+        <textarea class="form-control description" [ngModel]="retriviedPost?.description" placeholder="Enter Description" formControlName="description">
+  </textarea>
+        <div class="img-field">
+          <!-- <div style="text-align:center"> -->
+          <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+          <div class="img-render">
+            <img [src]="url" *ngIf="url" width="100%" height="100%">
+          </div>
+          <input type="file" (change)="selectFile($event)" id="name" class="FileUpload" name="name">
+          <!-- </div> -->
+        </div>
+      </div>
+
+    </div>
+
+  </ng-template>
+</form>

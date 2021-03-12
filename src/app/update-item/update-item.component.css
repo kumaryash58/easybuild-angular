@@ -1,0 +1,82 @@
+
+h1 {
+    text-align: center;
+  }
+  .row{
+    margin: 0% auto;
+  }
+  .FileUpload {
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+   
+  }
+  .FileUploadLable{
+    border: dotted 2px;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+    padding-top: 40px;
+    border: 1px;
+    
+  }
+  /* .dropZoneOverlay, .FileUpload {
+    width: 283px;
+    height: 71px;
+  } */
+  
+  .dropZoneOverlay {
+    border: dotted 1px;
+    position: absolute;
+    top: 0px;
+    text-align: center;
+  }
+  .success-post{
+    background-color:rgb(195, 238, 195);
+    color: green;
+  }
+  .title{
+    width: 100%;
+    height: 100px;
+  }
+  .form-control{
+    height: fit-content;
+    width: 100%;
+  }
+  
+  .btn-primary{
+    background-color:white;
+    border-color: #7b1fa2;
+    color: black;
+    font-weight: bold;
+    width: 20%;
+    margin-left: 10px;
+  }
+  .btn-primary:hover{
+    background-color: #7b1fa2;
+    border-color: #0d0d0e;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+  }
+  
+  .description{
+    height: 30%;
+    /* width: 200px; */
+    margin-left: 10px;
+  }
+  
+  .img-field{
+    margin-left: 10px;
+    margin-top: 10%;
+  }
+  
+  .img-render{
+    border-color: blanchedalmond;
+    border: rgb(255, 255, 255);
+    border-style: solid;
+    height: 250px;
+  }
+  #name{
+    margin-top: 10%;
+    background-color: #7b1fa2;
+  }

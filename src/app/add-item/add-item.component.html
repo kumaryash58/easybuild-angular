@@ -1,5 +1,5 @@
 <!-- https://medium.com/@rameez.s.shaikh/upload-and-retrieve-images-using-spring-boot-angular-8-mysql-18c166f7bc98 -->
-<h1>Add New Post</h1>
+
 
 <form [formGroup]="form" #registerform (ngSubmit)="onSubmit(registerform)">
   <div *ngIf="message; else templateName">
@@ -115,9 +115,16 @@ apiKey="o5zwzn40dqu70g9w43sbt01peg710wikp5fglvtyqf2dd97z"
     <!-- <div style="text-align:center"> -->
       <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
       <div class="img-render">
-        <img [src]="url" *ngIf="url" width="100%" height="100%"> 
+       
+        <img [src]="url" *ngIf="url" width="100%" height="100%">
+        <input type="file" (change)="selectFile($event)" id="name" class="FileUpload" name="name">
+        <div class="upload-text" *ngIf="url==null || url == 'undefined'">
+        <span class="material-icons">cloud_upload </span>
+        <h6> Upload High Quality Of Image </h6>
+        <h6>(JPG or PNG)</h6>
+      </div> 
       </div>
-      <input type="file" (change)="selectFile($event)" id="name" class="FileUpload" name="name">
+     
     <!-- </div> -->
   </div>
 </div>
