@@ -5,4 +5,5 @@ export class Post {
     postBody:String;
     image:any;
     token:String;
+    code:String;
 }

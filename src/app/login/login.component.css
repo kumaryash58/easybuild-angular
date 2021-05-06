@@ -4,6 +4,15 @@ h3 {
 login-bg{
     text-align: center;
 }
+.bg {
+
+  height: 100%; 
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000000 100%), url("/assets/bg-masthead.jpg");
+}
 .row{
     color: black;
 }
@@ -40,4 +49,7 @@ login-bg{
   }
   a{
     color: #7b1fa2;
+  }
+  .card{
+    margin-top: 20%;
   }

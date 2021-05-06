@@ -5,6 +5,8 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AdminDetail } from '../admin-detail';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
+import jwt_decode from 'jwt-decode';
 
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +15,12 @@ export class AuthenticationService {
     public currentUser: Observable<AdminDetail>;
     private baseUrl = environment.baseUrl;
     message: string;
-
+    isLoggedIn=false;
+    
+    authToken: any;
+    user: any;
+    tokenSubscription = new Subscription()
+    timeout;
     constructor(private http: HttpClient, private router: Router) {
         this.currentUserSubject = new BehaviorSubject<AdminDetail>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
@@ -29,22 +36,60 @@ export class AuthenticationService {
             .pipe(map(partner => {
                 if (partner) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+                if(partner != null && partner != ""){
                 localStorage.setItem('currentUser', JSON.stringify(partner));
                 // localStorage.setItem('token', partner);
                 localStorage.setItem('email', email);
                 
                 var obj = JSON.parse(partner);
-                let tokenStr =  obj.token;//this.partner.token;
+                let tokenStr =  obj.data.token;//this.partner.token;
                 localStorage.setItem('token', tokenStr);
-                localStorage.setItem('gender', obj.gender);
-                localStorage.setItem('firstName', obj.firstName);
-                localStorage.setItem('lastName', obj.lastName);
-                localStorage.setItem('profileImgPath', obj.profileImgPath);
-               // this.currentUserSubject.next(user);
+                localStorage.setItem('gender', obj.data.gender);
+                localStorage.setItem('userId', obj.data.userId);
+                localStorage.setItem('firstName', obj.data.firstName);
+                localStorage.setItem('lastName', obj.data.lastName);
+                localStorage.setItem('profileImgPath', obj.data.profileImgPath);
+                this.isLoggedIn=true;
+                } else{
+                    this.logout()
+                }
                 }
                 return partner;
             }));
     }
+
+    getToken(): string {
+        return localStorage.getItem('token');
+      }
+
+      getTokenExpirationDate(token: string): Date {
+        let tokenInfo = this.getDecodedAccessToken(token); // decode token
+        let expireDate = tokenInfo.exp; // get token expiration dateTime
+       console.log(tokenInfo);
+        if (expireDate=== undefined) return null;
+    
+        const date = new Date(0); 
+        date.setUTCSeconds(expireDate);
+        return date;
+      }
+
+      getDecodedAccessToken(token: string): any {
+        try{
+            return jwt_decode(token);
+        }
+        catch(Error){
+            return null;
+        }
+      }
+    
+      isTokenExpired(token?: string): boolean {
+        if(!token) token = this.getToken();
+        if(!token) return true;
+    
+        const date = this.getTokenExpirationDate(token);
+        if(date === undefined) return false;
+        return !(date.valueOf() > new Date().valueOf());
+      }
 
     forgotPasswerd(email) {
         // localStorage.setItem('email', email);

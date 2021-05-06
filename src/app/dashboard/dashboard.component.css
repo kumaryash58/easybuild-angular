@@ -47,3 +47,10 @@
     text-align: center;
     background-color: #f1f1f1;
   }
+.three-dot{
+  margin-left: 90%;
+  size: 10%;
+}
+tr{
+  width: 100px;
+}

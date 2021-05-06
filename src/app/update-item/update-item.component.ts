@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { Post } from '../post';
 import { PostService } from '../post.service';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'app-update-item',
@@ -63,24 +64,33 @@ export class UpdateItemComponent implements OnInit {
     this.postService.updatePost(this.post, this.id)
       .pipe(first())
       .subscribe((post) => {
-        if (post) {
+        if (post && this.mimeType != null && this.mimeType.name != "undefined") {
           const postStr = JSON.stringify(post);
           const obj = JSON.parse(postStr);
-          const id = obj.body.result.message
+          // const id = obj.body.result.message
           uploadImageData.append('imageFile', this.mimeType, this.mimeType.name);
           console.log(this.mimeType);
           //Upload Image
-          this.postService.updatePostImg(uploadImageData, id)
+          this.postService.updatePostImg(uploadImageData, this.id)
             .subscribe((response) => {
               if (response) {
-                this.message = 'Post uploaded successfully';
-                this.router.navigate(['/dashboard'])
+                // this.message = 'Post Added Successfully';
+                Utils.postUpdatedAlert();
+             //   this.router.navigate(['/dashboard'])
               } else {
-                this.message = 'Post not uploaded successfully';
+                Utils.oopsAlert();
+               // this.message = 'Post Not Added Successfully';
               }
+              // if (response) {
+              //   this.message = 'Post uploaded successfully';
+              //   this.router.navigate(['/dashboard'])
+              // } else {
+              //   this.message = 'Post not uploaded successfully';
+              // }
             });
         } else {
-          this.message = 'Post not uploaded successfully';
+          Utils.postUpdatedAlert();
+        //  this.message = 'Post not uploaded successfully';
         }
       }
       );

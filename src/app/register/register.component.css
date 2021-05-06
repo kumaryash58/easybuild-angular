@@ -1,9 +1,15 @@
+
 h3 {
     text-align: center;
   }
 .row{
-    margin: 0% auto;
     color: black;
+    height: 100%; 
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000000 100%), url("/assets/bg-masthead.jpg");
 }
 label{
   color: black;
@@ -48,6 +54,10 @@ a{
 }
 .required {
   color: red;
+}
+
+.card{
+  margin-top: 10%;
 }
 
 

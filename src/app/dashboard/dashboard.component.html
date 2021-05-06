@@ -16,18 +16,50 @@
 <div class="row">
   <div class="column">
     <div class="card">
+      <button class="text-dark three-dot" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_hori</mat-icon>
+      </button>
       <img [src]="post.fileUrl" class="card-img-top" alt="...">
      <div class="card-body"> 
       <h3 class="card-title">{{post.title}}</h3>
       <p class="card-text">{{post.description}}</p>
-      <input type="hidden" id="postId" value="post.id">
+      <input type="hidden" id="postId" value="{{post.id}}">
       <a [routerLink]="['/update-item', {'postId': post.id}]" class="btn btn-primary" id="post.id" >Update</a>
       </div> 
       </div>
     </div>
   </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>edit</mat-icon>
+      <span>Edit</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>preview</mat-icon>
+      <span>Preview</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>publish</mat-icon>
+      <span>Publish</span>
+    </button>
+    <button mat-menu-item (click)="deletePost(post.id)">
+      <mat-icon>delete</mat-icon>
+      <span>Delete</span>
+    </button>
+  </mat-menu>
 </tr>
 
+<!-- <div class="card" style="width: 18rem;">
+  <button class="text-dark" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <img src="..." class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+ </div>
 <div class="card" style="width: 18rem;">
   <img src="..." class="card-img-top" alt="...">
   <div class="card-body">
@@ -35,13 +67,6 @@
     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
-</div>
-<div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div>
+</div> -->
+<app-spinner></app-spinner>
 

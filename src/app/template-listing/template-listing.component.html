@@ -1,47 +1,38 @@
 <div class='container-fluid'>  
   <div class="row" style="padding: 20px;">  
-      <div class="col-sm-12 btn btn-success">  
+      <div class="col-sm-12">  
           Choose Template To Build New Site 
       </div>  
   </div>  
-  <div class='col-12'>  
+  <div class='col-12 item'>  
+    <div class="col-sm-4"></div>
       <ngb-carousel>  
+        <div *ngFor="let template of retriviedTemplates">
+         
           <ng-template ngbSlide>  
-              <img src="./assets/male-crop.png" alt="Delhi Metro">  
-              <div class="carousel-caption">  
-                  <h3 style="color: yellow">Delhi Metro</h3>  
-              </div>  
-          </ng-template>  
-          <ng-template ngbSlide>  
-              <img src="./assets/female-crop.png" alt="Bangalore Metro">  
-              <div class="carousel-caption">  
-                  <h3 style="color: yellow">Bangalore Metro</h3>  
-              </div>  
-          </ng-template>  
-          <ng-template ngbSlide>  
-              <img src="./assets/male-crop.png" alt="Channai Metro">  
-              <div class="carousel-caption">  
-                  <h3 style="color: yellow">Channai Metro</h3>  
-              </div>  
-          </ng-template>  
-          <ng-template ngbSlide>  
-              <img src="./assets/male-crop.png" alt="Jaipur Metro">  
-              <div class="carousel-caption">  
-                  <h3 style="color: yellow">Jaipur Metro</h3>  
-              </div>  
-          </ng-template>  
-          <ng-template ngbSlide>  
-              <img src="./assets/female-crop.png" alt="Mumbai Metro">  
-              <div class="carousel-caption">  
-                  <h3 style="color: yellow">Mumbai Metro</h3>  
-              </div>  
-          </ng-template>  
+            <!-- <div class="carousel-caption">   -->
+              <h3 class="row justify-content-center" style="color: #ffffff">{{template.tempName}}</h3>  
+          <!-- </div> -->
+              <img [src]="template.tempSnapshotUrl" alt="Template" class="slide-img">  
+               <input type="hidden"  id="template.id">
+               <footer id="modal-footer" class="row justify-content-center foot-go-back">
+            <button mat-raised-button id="modal-cancel-button" class="btn-u" (click)="closeModal()"><span class="glyphicon glyphicon-backward"></span>Go back</button>
+            <div class="col-sm-2"></div>
+            <a mat-raised-button id="" class="btn-u" [routerLink]="['/template-preview', {'html': template.id}]" target="_blank" rel="noopener noreferrer">Preview</a>
+            <div class="col-sm-2"></div>
+            <button mat-raised-button id="" class="btn-u" (click)="previewTemp()">Proceed>></button>
+              </footer>
+          </ng-template> 
+      
+        </div>
       </ngb-carousel>  
   </div>  
 
 </div>  
 
-  <footer id="modal-footer">
-      <button mat-raised-button id="modal-action-button" (click)="actionFunction()">Logout</button>
+  <!-- <footer id="modal-footer" class="row justify-content-center foot-go-back">
       <button mat-raised-button id="modal-cancel-button" (click)="closeModal()">Go back</button>
-  </footer>
+      <div class="col-sm-2"></div>
+      <button mat-raised-button id="modal-cancel-button" (click)="previewTemp()">Proceed</button>
+    
+  </footer> -->

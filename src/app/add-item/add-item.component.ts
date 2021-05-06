@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { first } from 'rxjs/operators';
 import { Post } from '../post';
 import { PostService } from '../post.service';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'app-add-item',
@@ -14,7 +16,8 @@ import { PostService } from '../post.service';
 export class AddItemComponent implements OnInit {
 
   constructor(private postService: PostService,
-    private router: Router) { }
+    private router: Router,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
    // this.message ="hello"
@@ -48,6 +51,7 @@ export class AddItemComponent implements OnInit {
 
   savePost() {
     //FormData API provides methods and properties to allow us easily prepare form data to be sent with POST HTTP requests.
+    this.spinner.show();
     const uploadImageData = new FormData(); 
     //Update Post Details
     this.postService.createPost(this.post)
@@ -65,11 +69,14 @@ export class AddItemComponent implements OnInit {
     this.postService.updatePostImg(uploadImageData, id)
     .subscribe((response) => {
       if (response) {
-        this.message = 'Post Added Successfully';
-        this.router.navigate(['/add-item'])
+        // this.message = 'Post Added Successfully';
+        Utils.postAddedAlert();
+        this.router.navigate(['/dashboard'])
       } else {
-        this.message = 'Post Not Added Successfully';
+        Utils.oopsAlert();
+       // this.message = 'Post Not Added Successfully';
       }
+      this.spinner.hide();
     });
       } else {
         this.message = 'Post Not Uploaded Successfully';

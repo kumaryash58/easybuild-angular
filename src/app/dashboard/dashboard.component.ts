@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+// import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { AdminDetail } from '../admin-detail';
 import { AdminDetailService } from '../admin-detail.service';
 import { PostService } from '../post.service';
@@ -23,6 +24,7 @@ export class DashboardComponent implements OnInit {
   message: string;
   imageName: any;
   retriviedPosts: any;
+  code:any;
   constructor(
     private postService: PostService,
     private adminDetailService: AdminDetailService,
@@ -47,5 +49,25 @@ export class DashboardComponent implements OnInit {
         }
       );
   }
+  deletePost(postId){
+  //  this.successNotification();
+    this.postService.deletePost(postId)
+      .subscribe(
+        res => {
+       
+         if(res != null){
+          window.location.reload();
+         }
+        //  this.retriviedPosts = res;
+          console.log(res);
+          // this.base64Data = this.retriviedPosts[0].picByte;
+          // this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        }
+      );
+  }
+
+  // successNotification(){
+  //   Swal.fire('Hi', 'We have been informed!', 'success')
+  // }
 
 }

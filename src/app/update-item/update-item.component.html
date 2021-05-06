@@ -34,7 +34,8 @@
     <div class="row">
       <div class="col-sm-1"></div>
       <div class="form-group col-md-10">
-        <input type="text" class="form-control title" formControlName="title" [ngModel]="retriviedPost?.title"  placeholder="Enter Title">
+        <input type="text" class="form-control title" formControlName="title" [ngModel]="retriviedPost?.title"
+          placeholder="Enter Title">
       </div>
       <div class="col-sm-3"></div>
     </div>
@@ -57,20 +58,29 @@
   }" class="form-control" formControlName="postBody" [ngModel]="retriviedPost?.postBody"></editor>
       </div>
       <div class="form-group col-md-4">
-        <textarea class="form-control description" [ngModel]="retriviedPost?.description" placeholder="Enter Description" formControlName="description">
+        <textarea class="form-control description" [ngModel]="retriviedPost?.description"
+          placeholder="Enter Description" formControlName="description">
   </textarea>
-        <div class="img-field">
-          <!-- <div style="text-align:center"> -->
-          <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-          <div class="img-render">
-            <img [src]="url" *ngIf="url" width="100%" height="100%">
-          </div>
-          <input type="file" (change)="selectFile($event)" id="name" class="FileUpload" name="name">
-          <!-- </div> -->
-        </div>
+  <div class="img-field">
+    <!-- <div style="text-align:center"> -->
+      <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+      <div class="img-render">
+       
+        <img [src]="url" *ngIf="url" width="100%" height="100%">
+        <input type="file" (change)="selectFile($event)" id="name" class="FileUpload" name="name">
+        <div class="upload-text" *ngIf="url==null || url == 'undefined'">
+        <span class="material-icons">cloud_upload </span>
+        <h6> Upload High Quality Of Image </h6>
+        <h6>(JPG or PNG)</h6>
+      </div> 
+      </div>
+     
+    <!-- </div> -->
+  </div>
       </div>
 
     </div>
 
   </ng-template>
 </form>
+<app-spinner></app-spinner>

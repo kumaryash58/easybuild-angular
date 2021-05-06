@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminDetail } from '../admin-detail';
 import { AdminDetailService } from '../admin-detail.service';
+import { HeaderComponent } from '../header/header.component';
+import { Utils } from '../utils';
 
 @Component({
   selector: 'app-edit-profile',
@@ -18,7 +21,8 @@ export class EditProfileComponent implements OnInit {
 
   constructor(
     private adminDetailService:AdminDetailService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) { }
  
   ngOnInit() {
@@ -47,6 +51,7 @@ export class EditProfileComponent implements OnInit {
   register(registerform){
 
     this.adminDetail=new AdminDetail();
+    this.adminDetail.id=parseInt(localStorage.getItem('userId'));
     this.adminDetail.firstName=this.firstName.value;
     this.adminDetail.lastName=this.lastName.value;
     this.adminDetail.email=this.email.value;
@@ -63,12 +68,19 @@ export class EditProfileComponent implements OnInit {
     this.loading = true;
     this.adminDetailService.updateAdminProfile(this.adminDetail)
       .subscribe(data => {
-        this.router.navigate(['/admin-profile'])
+        var obj = JSON.parse(data);
+        localStorage.setItem('firstName', obj.data.firstName);
+        localStorage.setItem('lastName', obj.data.lastName);
+        Utils.successAlert();
         window.location.reload();
+      //  this.router.navigate(['/admin-profile'])
+      //  this.router.navigate([HeaderComponent]);
+      
       },
       error => {
           this.loading = false;
       });
+     
     this.adminDetail = new AdminDetail();
   }
 
@@ -126,6 +138,10 @@ export class EditProfileComponent implements OnInit {
       });
 
 	}
+
+  get id(){
+    return this.form.get('id');
+  }
 
   get firstName(){
     return this.form.get('firstName');

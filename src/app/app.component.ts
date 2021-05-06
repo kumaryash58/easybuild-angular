@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AdminDetail } from './admin-detail';
+import { TemplateListingComponent } from './template-listing/template-listing.component';
 import { AuthenticationService } from './_services';
 
 @Component({
@@ -17,7 +19,8 @@ export class AppComponent {
  profileImgPath = localStorage.getItem('profileImgPath');
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    public matDialog: MatDialog
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
@@ -32,6 +35,21 @@ export class AppComponent {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
+  }
+
+  openModal() {
+    const dialogConfig = new MatDialogConfig();
+    // The user can't close the dialog by clicking outside its body
+    dialogConfig.disableClose = true;
+    dialogConfig.id = "template-listing";
+    dialogConfig.height = "550px";
+    // dialogConfig.width = "600px";
+    // https://material.angular.io/components/dialog/overview
+    const modalDialog = this.matDialog.open(TemplateListingComponent, dialogConfig);
+  }
+
+  templatePreview(){
+    
   }
   
 }

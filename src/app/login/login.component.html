@@ -1,78 +1,49 @@
-<!-- <h3>Login</h3>
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="on">
-  <div class="bg-light login-bg">
-    <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="form-group col-sm-4">
-        <label for="email">Email</label>
-        <input type="email" formControlName="email" placeholder="Enter Email" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-          <div *ngIf="f.email.errors.required">Email is required</div>
-        </div>
-      </div>
-      <div class="col-sm-4"></div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="form-group col-sm-4">
-        <label for="password">Password</label>
-        <input type="password" formControlName="password" placeholder="Enter Password" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Password is required</div>
-        </div>
-      </div>
-      <div class="col-sm-4"></div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4"></div>
-      <div class="form-group">
-        <button [disabled]="loading" class="btn btn-primary bg-dark">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          Login 
-        </button>
-      </div>
-      <div class="col-sm-1"></div>
-       <div class="form-group">
-        <a mat-list-item *ngIf="currentUser==null" [routerLink]="'/forgot-passwerd'"> Forgot Password </a>
-    
-      </div>
-    </div>
-    <div class="col-sm-4"></div>
-  </div>
-</form> -->
+<div class="bg">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card">
+          <header class="card-header">
+            <a href="/register" class="float-right btn btn-outline-primary mt-1">Sign Up</a>
+            <h4 class="card-title mt-2">Login</h4>
+          </header>
+         
+        <div>
+            <a class="hollow button primary" 
+            href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:4200/homepage&response_type=code&client_id=751174733571-kdkfehahu5l3rdqtmafm1jj7a649q4ld.apps.googleusercontent.com&approval_prompt=force">
+              <img width="15px" style="margin-bottom:3px; margin-right:5px" 
+              alt="Google login" 
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+              Sign in with Google
+            </a>
+          </div>
+          
+          <article class="card-body">
+            <div class="form-group">
+              <label>Email address<span class="required">*</span></label>
+              <input type="email" class="form-control" placeholder="Enter Email" formControlName="email" required>
+              <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+            </div>
 
-<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-    <div class="card">
-    <header class="card-header">
-      <a href="/register" class="float-right btn btn-outline-primary mt-1">Sign Up</a>
-      <h4 class="card-title mt-2">Login</h4>
-    </header>
-    <article class="card-body">
-      <div class="form-group">
-        <label>Email address<span class="required">*</span></label>
-        <input type="email" class="form-control" placeholder="Enter Email" formControlName="email" required>
-        <!-- <small class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-      </div> 
-    
-     
-      <div class="form-group">
-        <label>Enter password<span class="required">*</span></label>
-          <input class="form-control" type="password" placeholder="Enter Password" formControlName="password" required>
-      </div> 
-        <div class="form-group">
-            <button type="submit" [disabled]="loading" class="btn btn-primary btn-block"> Login  </button>
-            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-        </div>     
-        <small class="text-muted">
-          <a mat-list-item  [routerLink]="'/forgot-passwerd'"> Forgot Password </a>
-        </small>                                          
-    </article> 
-    <div class="border-top card-body text-center">Don't have an account? <a href="/register">Sign Up</a></div>
-    </div> 
-    </div> 
+
+            <div class="form-group">
+              <label>Enter password<span class="required">*</span></label>
+              <input class="form-control" type="password" placeholder="Enter Password" formControlName="password"
+                required>
+            </div>
+            <div class="form-group">
+              <button type="submit" [disabled]="loading" class="btn btn-primary btn-block"> Login </button>
+              <!-- <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span> -->
+
+            </div>
+            <small class="text-muted">
+              <a mat-list-item [routerLink]="'/forgot-passwerd'"> Forgot Password </a>
+            </small>
+          </article>
+          <div class="border-top card-body text-center">Don't have an account? <a href="/register">Sign Up</a></div>
+        </div>
+      </div>
     </div>
   </form>
+</div>
+<app-spinner></app-spinner>

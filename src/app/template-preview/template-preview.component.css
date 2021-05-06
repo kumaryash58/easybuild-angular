@@ -1,0 +1,10 @@
+.previewDiv{
+    width: 700px;
+    height: 700px;
+    border-width: 2px;
+    border-color: seashell;
+    border: seashell;
+    margin-left: 10%;
+    margin-top: 10%;
+    background-color: seashell;
+}
