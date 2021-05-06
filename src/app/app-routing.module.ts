@@ -22,8 +22,18 @@ if(x != null) {
   route = 'dashboard';
 }
 const routes: Routes = [
- 
-  { path: '', //redirectTo: route, pathMatch: 'full',
+  { 
+    path: '',
+    component: AppComponent, 
+    children: [
+      { path: 'register', component: RegisterComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'template-preview', component: TemplatePreviewComponent, canActivate: [UserGuard] },
+      { path: 'homepage', component: HomepageComponent },
+      { path: '', component: HomepageComponent }
+    ]
+},
+  { path: '', //\\redirectTo: route, pathMatch: 'full',
   component: DashboardLayoutComponent, 
   children: [
     {
@@ -41,17 +51,6 @@ const routes: Routes = [
   { path: 'create-template', component: CreateTemplateComponent, canActivate: [UserGuard] },
  
   ]
-},
- 
-  { 
-    path: '',
-    component: AppComponent, 
-    children: [
-      { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'template-preview', component: TemplatePreviewComponent, canActivate: [UserGuard] },
-      { path: 'homepage', component: HomepageComponent }
-    ]
 },
 ];
 
