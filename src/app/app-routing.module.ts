@@ -17,39 +17,41 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { UserGuard } from './_services';
 
 const x = localStorage.getItem('currentUser');
-let route = 'register';
+let route = 'login';
 if(x != null) {
   route = 'dashboard';
 }
 const routes: Routes = [
-  { 
-    path: '',
-    component: AppComponent, 
-    children: [
-      { path: 'register', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
-      { path: 'template-preview', component: TemplatePreviewComponent, canActivate: [UserGuard] },
-      { path: 'homepage', component: HomepageComponent },
-      { path: '', component: HomepageComponent }
-    ]
-},
+
   { path: '', //\\redirectTo: route, pathMatch: 'full',
-  component: DashboardLayoutComponent, 
+  component: AppComponent, 
   children: [
     {
       path: '',
       redirectTo: route,
       pathMatch: 'full'
     },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [UserGuard] },
-  { path: 'add-item', component: AddItemComponent, canActivate: [UserGuard] },
-  { path: 'forgot-passwerd', component: ForgotPasswerdComponent },
-  { path: 'admin-profile', component: AdminProfileComponent, canActivate: [UserGuard] },
-  { path: 'edit-profile', component: EditProfileComponent, canActivate: [UserGuard] },
-  { path: 'update-item', component: UpdateItemComponent, canActivate: [UserGuard] },
-  { path: 'template-listing', component: TemplateListingComponent, canActivate: [UserGuard] },
-  { path: 'create-template', component: CreateTemplateComponent, canActivate: [UserGuard] },
  
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'template-preview', component: TemplatePreviewComponent, canActivate: [UserGuard] },
+  { path: 'homepage', component: HomepageComponent },
+  { path: 'forgot-passwerd', component: ForgotPasswerdComponent },
+  { path: '', component: HomepageComponent }
+  ]
+},
+{ 
+  path: '',
+  component: DashboardLayoutComponent, 
+  children: [
+    { path: 'dashboard', component: DashboardComponent, canActivate: [UserGuard] },
+    { path: 'add-item', component: AddItemComponent, canActivate: [UserGuard] },
+    { path: 'admin-profile', component: AdminProfileComponent, canActivate: [UserGuard] },
+    { path: 'edit-profile', component: EditProfileComponent, canActivate: [UserGuard] },
+    { path: 'update-item', component: UpdateItemComponent, canActivate: [UserGuard] },
+    { path: 'template-listing', component: TemplateListingComponent, canActivate: [UserGuard] },
+    { path: 'create-template', component: CreateTemplateComponent, canActivate: [UserGuard] },
+  
   ]
 },
 ];

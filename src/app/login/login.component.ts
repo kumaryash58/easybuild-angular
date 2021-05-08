@@ -61,9 +61,13 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate(['/dashboard'])
                     Utils.successAlert();
-                    window.location.reload();
+                    this.router.navigate(['/dashboard'])
+                    .then(() => {
+                        window.location.reload();
+                      });
+                  
+                    // window.location.reload();
                 },
                 error => {
                     this.loading = false;

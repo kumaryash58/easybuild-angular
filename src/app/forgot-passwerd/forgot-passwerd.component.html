@@ -1,3 +1,4 @@
+<div class="bg">
 <form [formGroup]="forgetPasswerdForm" (ngSubmit)="onSubmit()" autocomplete="on">
   <div *ngIf="message; else templateName">
     <div class="bg-light login-bg">
@@ -74,4 +75,5 @@
     </form>
   </ng-template>
 </form>
+</div>
 <app-spinner></app-spinner>

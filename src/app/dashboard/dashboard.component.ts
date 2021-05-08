@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
         res => {
           this.retriviedPosts = res;
           console.log(res);
+          
           // this.base64Data = this.retriviedPosts[0].picByte;
           // this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
         }
